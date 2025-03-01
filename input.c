@@ -142,8 +142,11 @@ void rfb_ptr_hook(int mask, int screen_x, int screen_y, rfbClientPtr cl)
     // printf("pointer to %d, %d\n", screen_x, screen_y);
     float global_x = (float)(screen_x + kmsvnc->input_offx);
     float global_y = (float)(screen_y + kmsvnc->input_offy);
-    int touch_x = round(global_x / (kmsvnc->input_width ?: kmsvnc->drm->mfb->width) * UINPUT_ABS_MAX);
-    int touch_y = round(global_y / (kmsvnc->input_height ?: kmsvnc->drm->mfb->height) * UINPUT_ABS_MAX);
+    //int touch_x = round(global_x / (kmsvnc->input_width ?: kmsvnc->drm->mfb->width) * UINPUT_ABS_MAX);
+    //int touch_y = round(global_y / (kmsvnc->input_height ?: kmsvnc->drm->mfb->height) * UINPUT_ABS_MAX);
+    int touch_x = global_x;
+    int touch_y = global_y;
+
     struct input_event ies1[] = {
         {
             .type = EV_ABS,
